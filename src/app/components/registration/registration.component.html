@@ -1,0 +1,43 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>
+      First Name
+      <input type="text" formControlName="firstName" />
+    </label>
+  </div>
+
+  <div>
+    <label>
+      Last Name
+      <input type="text" formControlName="lastName" />
+    </label>
+  </div>
+
+  <div>
+    <label>
+      Email
+      <input type="text" formControlName="email" />
+    </label>
+  </div>
+
+  <div>
+    <label>
+      Phone
+      <input type="text" formControlName="phone" />
+    </label>
+    <div
+      class="danger"
+      *ngIf="
+        phoneControl.invalid && (phoneControl.dirty || phoneControl.touched)
+      "
+    >
+      Wrong phone number, must contain only numbers and minimum length is 10
+    </div>
+  </div>
+  <button type="submit" [disabled]="profileForm.invalid">Submit</button>
+</form>
+
+<h2>Users:</h2>
+<div *ngFor="let user of users">
+  {{ user.lastName }}
+</div>
